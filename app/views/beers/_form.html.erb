@@ -15,15 +15,14 @@
     <%= form.label :name %>
     <%= form.text_field :name, id: :beer_name %>
   </div>
-
   <div class="field">
     <%= form.label :style %>
-    <%= form.text_field :style, id: :beer_style %>
+    <%= form.select(:style, @styles.map {|p| [p.to_s]}) %>
   </div>
 
   <div class="field">
     <%= form.label :brewery_id %>
-    <%= form.number_field :brewery_id, id: :beer_brewery_id %>
+    <%= form.select(:brewery_id, Brewery.all.map {|p| [p.name, p.id]}) %>
   </div>
 
   <div class="actions">
