@@ -15,15 +15,15 @@ class BeersController < ApplicationController
   # GET /beers/new
   def new
     @beer = Beer.new
-    new_edit_commons
-  end
+    newEditCommons
+   end
 
   # GET /beers/1/edit
   def edit
-    new_edit_commons
+    newEditCommons
   end
 
-  def new_edit_commons
+  def newEditCommons
     @breweries = Brewery.all
     @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
   end
@@ -69,14 +69,13 @@ class BeersController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_beer
+      @beer = Beer.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_beer
-    @beer = Beer.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def beer_params
-    params.require(:beer).permit(:name, :style, :brewery_id)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def beer_params
+      params.require(:beer).permit(:name, :style, :brewery_id)
+    end
 end

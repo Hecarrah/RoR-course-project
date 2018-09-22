@@ -1,8 +1,8 @@
 <h2> Ratings </h2>
 
 <ul>
- <% @ratings.each do |rating| %>
-    <li> <%= rating %> <%= link_to 'delete', rating_path(rating.id), method: :delete,data: { confirm: 'Are you sure?' }%> </li>
+ <% @rating.each do |rating| %>
+    <li> <%= rating %> <%= link_to rating.user.username, user_path(rating.user)%> </li>
  <% end %>
 </ul>
 
