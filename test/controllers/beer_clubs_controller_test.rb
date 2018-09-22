@@ -17,7 +17,7 @@ class BeerClubsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create beer_club" do
     assert_difference('BeerClub.count') do
-      post beer_clubs_url, params: { beer_club: { city: @beer_club.city, founded: @beer_club.founded, integer,: @beer_club.integer,, name: @beer_club.name, string,: @beer_club.string,, string: @beer_club.string } }
+      post beer_clubs_url, params: { beer_club: { city: @beer_club.city, founded: @beer_club.founded, name: @beer_club.name } }
     end
 
     assert_redirected_to beer_club_url(BeerClub.last)
@@ -34,7 +34,7 @@ class BeerClubsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update beer_club" do
-    patch beer_club_url(@beer_club), params: { beer_club: { city: @beer_club.city, founded: @beer_club.founded, integer,: @beer_club.integer,, name: @beer_club.name, string,: @beer_club.string,, string: @beer_club.string } }
+    patch beer_club_url(@beer_club), params: { beer_club: { city: @beer_club.city, founded: @beer_club.founded, name: @beer_club.name } }
     assert_redirected_to beer_club_url(@beer_club)
   end
 

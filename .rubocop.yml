@@ -65,3 +65,7 @@ Naming/UncommunicativeMethodParamName:
 Metrics/BlockLength:
   Enabled: true
   Max: 15
+
+Layout/EndOfLine:
+  Enabled: false
+
