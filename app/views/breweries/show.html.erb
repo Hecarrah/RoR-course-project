@@ -30,6 +30,6 @@ Has <%= pluralize(@brewery.ratings.count, 'rating')%>, with the average being <%
 <% end %>
 </p>
 
-<%= link_to 'Edit', edit_brewery_path(@brewery) %> |
+<%= link_to 'Edit |', edit_brewery_path(@brewery) unless current_user.nil? %>
 <%= link_to 'Back', breweries_path %> |
 <%= link_to 'list of beers', beers_path %>

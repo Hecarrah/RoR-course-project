@@ -24,6 +24,6 @@
 <% end %>
 </p>
 
-<%= link_to 'Edit', edit_beer_path(@beer) %> |
+<%= link_to 'Edit |', edit_beer_path(@beer) unless current_user.nil?%>
 <%= link_to 'Back', beers_path %> |
 <%= link_to 'list of breweries', breweries_path %>

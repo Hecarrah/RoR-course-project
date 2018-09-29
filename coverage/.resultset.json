@@ -90,7 +90,7 @@
         18,
         null,
         6,
-        21,
+        6,
         15,
         15,
         15,
@@ -214,9 +214,13 @@
         1,
         null,
         1,
-        108,
+        128,
         null,
-        85,
+        86,
+        null,
+        null,
+        1,
+        0,
         null,
         null
       ],
@@ -297,13 +301,6 @@
         null,
         1,
         0,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        null,
         null,
         null
       ],
@@ -483,6 +480,7 @@
       "D:/University/RoR/ratebeer/app/controllers/beer_clubs_controller.rb": [
         0,
         0,
+        0,
         null,
         null,
         null,
@@ -601,6 +599,6 @@
         0
       ]
     },
-    "timestamp": 1538244691
+    "timestamp": 1538248231
   }
 }

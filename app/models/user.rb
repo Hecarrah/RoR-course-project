@@ -35,7 +35,7 @@ class User < ApplicationRecord
     return nil if ratings.empty?
 
     sums = Hash.new(0)
-    beers.map{|b| b.brewery_id}.uniq.each do |id|
+    beers.map(&:brewery_id).uniq.each do |id|
       namearr = ratings.joins("left join beers on beers.id = beer_id").where("beers.brewery_id = '#{id}'").map(&:score)
       namesum = namearr.reduce(0, :+) / namearr.size
       sums[id] = namesum.to_i
