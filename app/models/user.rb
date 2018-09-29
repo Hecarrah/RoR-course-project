@@ -12,4 +12,34 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 4 }
   validates :password, format: { with: /.*[A-Z]+.*/, message: "Must contain an uppercase letter." }
   validates :password, format: { with: /.*[0-9]+.*/, message: "Must contain a number." }
+
+  def favorite_beer
+    return nil if ratings.empty?
+
+    ratings.max_by(&:score).beer
+  end
+
+  def favorite_style
+    return nil if ratings.empty?
+
+    sums = Hash.new(0)
+    beers.select("Style").distinct.map(&:style).each do |style|
+      stylearr = ratings.joins("left join beers on beers.id = beer_id").where("beers.style = '#{style}'").map(&:score)
+      stylesum = (stylearr.reduce(0, :+) / stylearr.size)
+      sums[style] = stylesum.to_i
+    end
+    sums.key(sums.values.max)
+  end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+
+    sums = Hash.new(0)
+    beers.map{|b| b.brewery_id}.uniq.each do |id|
+      namearr = ratings.joins("left join beers on beers.id = beer_id").where("beers.brewery_id = '#{id}'").map(&:score)
+      namesum = namearr.reduce(0, :+) / namearr.size
+      sums[id] = namesum.to_i
+    end
+    Brewery.find(sums.key(sums.values.max)).name
+  end
 end

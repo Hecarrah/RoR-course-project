@@ -1,5 +1,6 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
+  before_action :new_edit_commons, only: [:new, :edit, :create]
 
   # GET /beers
   # GET /beers.json
@@ -15,12 +16,10 @@ class BeersController < ApplicationController
   # GET /beers/new
   def new
     @beer = Beer.new
-    new_edit_commons
   end
 
   # GET /beers/1/edit
   def edit
-    new_edit_commons
   end
 
   def new_edit_commons
