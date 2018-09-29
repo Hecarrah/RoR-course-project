@@ -8,6 +8,6 @@ deploy:
   provider: heroku
   api_key:
     secure: fITiieo6suhxbx3UWsPI0aFKWD1ZkTco8ovcrLy5+WRZWWZD1SKJqFZz8E/nAIRmADd7e7nHw450qW0501kkI8EOgoOt/M/VwDETHSfy3cA/O6JdwocpeVEIeTdIpTC4jMDfJINdQ2Y7SohJIHlO2740R9979munb8NCUn9H4Cj0LwcBa3MAfs16IMpiLmE6UlYD6UdiJicTSTo0r5YydVhYGoZfb6Uzpcz2egrPll+B6CrvF6mpVwJMmE7+7rm80URLCLbzwKexbWUVlpX32XtSSfPYprkTjry0hGWb3Msw32t5RsQ9ChucHSHBzqL+Z/4JdhzAXdtCKWhU12na/CGvmAogz4QlMw253UFew2DMy07rOZOyXvOehmUBNMtoJryoNjPq9i7Ml7qAgdJ4R2LUfgHh0n7p1T5XmbNU5F0g0K/JcXlkFkzGBRI7Ply+93ikItRVKXwDtxpiRlIottWn2AuRfzI6+t2yRF4zwL4ZC/Xlo/8TUTz3OgVcUBJplU7F0P1Yi1bGBBUjVkuEjc0bfxbfy3PwNiTFxVamw0+1WES3WIjhr3Zyamo+gXBaQmKGtnEvBSTjE86jBfwiXSrI+SEg1fXwPJ7w3CRzcZsJ0BfPRVuslfdjU25QooiiHrWSVPYjQr/IB3cwNROmfelBTCDVPqMEzKp+/QTGgTM=
-  app: RoR-course-project
+  app: stormy-eyrie-58581
   on:
     repo: Hecarrah/RoR-course-project
