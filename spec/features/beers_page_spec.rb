@@ -7,9 +7,12 @@ require 'rails_helper'
       @breweries.each do |brewery_name|
         FactoryBot.create(:brewery, name: brewery_name, year: year += 1)
       end
+      
     end
 
     it "can make make a new beer" do
+        FactoryBot.create :user 
+        sign_in(username:"TestUser", password:"Salasana1")
         visit new_beer_path
         fill_in('beer_name', with:'TestBeer')
         select("Koff", from: 'beer[brewery_id]')

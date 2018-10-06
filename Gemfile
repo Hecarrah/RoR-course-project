@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 #gem 'mini_racer', platforms: :ruby
 gem 'bcrypt', '~> 3.1.7'
+gem 'httparty'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,6 +63,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'webmock'
 end
 
 group :production do
