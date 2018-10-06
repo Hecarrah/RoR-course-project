@@ -1,8 +1,6 @@
 language: ruby
 rvm:
 - 2.5.1
-env:
--BEERMAPPING_APIKEY="345b7b67220d99d99d251795f0ef6b3d"
 script:
 - bundle exec rails db:migrate
 - bundle exec rspec -fd spec
