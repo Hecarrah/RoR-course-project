@@ -91,5 +91,5 @@ describe "BeermappingApi" do
       expect(place.name).to eq("Panimoravintola Koulu")
       expect(place.street).to eq("Eerikinkatu 18")
     end
-
+  end
 end
