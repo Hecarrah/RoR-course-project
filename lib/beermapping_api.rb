@@ -28,7 +28,7 @@ class BeermappingApi
     raise "BEERMAPPING_APIKEY env variable not defined" if ENV['BEERMAPPING_APIKEY'].nil?
 
     ENV['BEERMAPPING_APIKEY']
-  end
+  end 
 
   def self.beerplace(placeid)
     url = "http://beermapping.com/webservice/locquery/#{key}/#{placeid}"

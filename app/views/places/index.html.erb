@@ -6,6 +6,10 @@
 <% end %>
 
 <% if @places %>
+<Strong>Local weather in <%= params[:city] %>: </Strong> <br>
+Temperature: <%=@weather["temp_c"]%>°C, but feels like: <%=@weather["feelslike_c"]%>°C   <br>
+Wind speed: <%=@weather["wind_kph"]%>kph, direction: <%=@weather["wind_dir"]%><br>
+The sky looks: <%=@weather["condition"]["text"]%>  <br><br>
   <table>
 <thead>
   <% Place.rendered_fields.each do |field| %>
@@ -24,4 +28,4 @@
 </tr> 
     <% end %>
   </table>
-<% end %>
+<% end %> 
