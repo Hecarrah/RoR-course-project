@@ -72,16 +72,20 @@ RSpec.describe User, type: :model do
     end
 
     it "is the only rated if the user has only one rating" do
-      beer = create_beer_with_rating_and_style({ user: user }, 20, "1")
+      style1 = FactoryBot.create :style, name: "1"
+      beer = create_beer_with_rating_and_style({ user: user }, 20, style1)
     
-      expect(user.favorite_style).to eq(beer.style)
+      expect(user.favorite_style).to eq("1")
     end
 
     it "is the one with highest rating if several rated" do 
-      beer1 = create_beer_with_rating_and_style({ user: user }, 20, "1")
-      beer2 = create_beer_with_rating_and_style({ user: user }, 10, "1")
-      beer3 = create_beer_with_rating_and_style({ user: user }, 10, "2")
-      beer4 = create_beer_with_rating_and_style({ user: user }, 20, "3")
+      style1 = FactoryBot.create :style, name: "1"
+      style2 = FactoryBot.create :style, name: "2"
+      style3 = FactoryBot.create :style, name: "3"
+      beer1 = create_beer_with_rating_and_style({ user: user }, 20, style1)
+      beer2 = create_beer_with_rating_and_style({ user: user }, 10, style1)
+      beer3 = create_beer_with_rating_and_style({ user: user }, 10, style2)
+      beer4 = create_beer_with_rating_and_style({ user: user }, 20, style3)
     
       expect(user.favorite_style).to eq("3")
     end
@@ -99,16 +103,20 @@ RSpec.describe User, type: :model do
     end
 
     it "is the only rated if the user has only one rating" do
-      beer = create_beer_with_rating_and_style({ user: user }, 20, "1")
+      style1 = FactoryBot.create :style, name: "1"
+      beer = create_beer_with_rating_and_style({ user: user }, 20, style1)
     
       expect(user.favorite_brewery).to eq("TestBrewery")
     end
 
     it "is the one with highest rating if several rated" do
-      beer1 = create_beer_with_rating_and_style({ user: user }, 20, "1")
-      beer2 = create_beer_with_rating_and_style({ user: user }, 10, "1")
-      beer3 = create_beer_with_rating_and_style({ user: user }, 10, "2")
-      beer4 = create_beer_with_rating_and_style({ user: user }, 20, "3")
+      style1 = FactoryBot.create :style, name: "1"
+      style2 = FactoryBot.create :style, name: "2"
+      style3 = FactoryBot.create :style, name: "3"
+      beer1 = create_beer_with_rating_and_style({ user: user }, 20, style1)
+      beer2 = create_beer_with_rating_and_style({ user: user }, 10, style1)
+      beer3 = create_beer_with_rating_and_style({ user: user }, 10, style2)
+      beer4 = create_beer_with_rating_and_style({ user: user }, 20, style3)
     
       expect(user.favorite_brewery).to eq("TestBrewery")
     end

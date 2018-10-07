@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :styles
   resources :beer_clubs
   resources :users
   resources :beers
   resources :breweries
   resources :ratings, only: [:index, :new, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
+  resources :places, only: [:index, :show]
 
   root 'breweries#index'
   get 'kaikki_bisset', to: 'beers#index'
@@ -12,6 +14,8 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new'
   get 'memberships', to: 'memberships#new'
   delete 'signout', to: 'sessions#destroy'
+  delete 'memberships', to: 'memberships#destroy'
+
 
   get 'places', to: 'places#index'
   post 'places', to:'places#search'

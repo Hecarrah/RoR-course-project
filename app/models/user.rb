@@ -23,12 +23,12 @@ class User < ApplicationRecord
     return nil if ratings.empty?
 
     sums = Hash.new(0)
-    beers.select("Style").distinct.map(&:style).each do |style|
-      stylearr = ratings.joins("left join beers on beers.id = beer_id").where("beers.style = '#{style}'").map(&:score)
+    beers.select("style_id").distinct.map(&:style_id).each do |style|
+      stylearr = ratings.joins("left join beers on beers.id = beer_id").where("beers.style_id = '#{style}'").map(&:score)
       stylesum = (stylearr.reduce(0, :+) / stylearr.size)
       sums[style] = stylesum.to_i
     end
-    sums.key(sums.values.max)
+    Style.find(sums.key(sums.values.max)).name
   end
 
   def favorite_brewery

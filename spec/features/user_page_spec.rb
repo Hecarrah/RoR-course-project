@@ -39,21 +39,26 @@ describe "users page has favorite fields" do
       end
         
       it "shows favorite style" do
-        
-        beer1 = create_beer_with_rating_and_style({ user: user }, 20, "1")
-      beer2 = create_beer_with_rating_and_style({ user: user }, 10, "1")
-      beer3 = create_beer_with_rating_and_style({ user: user }, 10, "2")
-      beer4 = create_beer_with_rating_and_style({ user: user }, 20, "3")
+        style1 = FactoryBot.create :style, name: "1"
+        style2 = FactoryBot.create :style, name: "2"
+        style3 = FactoryBot.create :style, name: "3"
+      beer1 = create_beer_with_rating_and_style({ user: user }, 20, style1)
+      beer2 = create_beer_with_rating_and_style({ user: user }, 10, style1)
+      beer3 = create_beer_with_rating_and_style({ user: user }, 10, style2)
+      beer4 = create_beer_with_rating_and_style({ user: user }, 20, style3)
     
         visit user_path(user)
         expect(page).to have_content 'Favorite Style: 3'
       end
 
       it "shows favorite brewery" do
-        beer1 = create_beer_with_rating_and_style({ user: user }, 20, "1")
-      beer2 = create_beer_with_rating_and_style({ user: user }, 10, "1")
-      beer3 = create_beer_with_rating_and_style({ user: user }, 10, "2")
-      beer4 = create_beer_with_rating_and_style({ user: user }, 20, "3")
+        style1 = FactoryBot.create :style, name: "1"
+        style2 = FactoryBot.create :style, name: "2"
+        style3 = FactoryBot.create :style, name: "3"
+        beer1 = create_beer_with_rating_and_style({ user: user }, 20, style1)
+        beer2 = create_beer_with_rating_and_style({ user: user }, 10, style1)
+        beer3 = create_beer_with_rating_and_style({ user: user }, 10, style2)
+        beer4 = create_beer_with_rating_and_style({ user: user }, 20, style3)
     
         visit user_path(user)
         expect(page).to have_content 'Favorite Brewery: TestBrewery'

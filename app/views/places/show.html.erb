@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+  <strong>Name:</strong>
+  <%= BeermappingApi.beerplace(params[:id]).name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= BeermappingApi.beerplace(params[:id]).status %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= BeermappingApi.beerplace(params[:id]).street %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= BeermappingApi.beerplace(params[:id]).zip %> <%= BeermappingApi.beerplace(params[:id]).city %>
+</p>

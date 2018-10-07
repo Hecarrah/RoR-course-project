@@ -9,11 +9,16 @@ FactoryBot.define do
         name { "TestBrewery" }
         year { 1900 } 
       end
-    
+      
+    factory :style do
+        name { "testStyle" }
+        description { "test description"}
+      end
+
       factory :beer do
         name { "TestBeer" }
-        style { "TestStyle" } 
         brewery
+        style
       end
     
       factory :rating do
