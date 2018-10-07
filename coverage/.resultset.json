@@ -513,10 +513,30 @@
         3,
         3,
         3,
+        3,
         1,
         null,
         2,
         null,
+        null,
+        null
+      ],
+      "D:/University/RoR/ratebeer/lib/apixu_api.rb": [
+        1,
+        null,
+        1,
+        2,
+        null,
+        2,
+        2,
+        2,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        2,
         null,
         null
       ],
@@ -745,6 +765,7 @@
         null,
         0,
         null,
+        null,
         0,
         0,
         0,
@@ -766,6 +787,6 @@
         0
       ]
     },
-    "timestamp": 1538931046
+    "timestamp": 1538936840
   }
 }

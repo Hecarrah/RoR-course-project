@@ -5,10 +5,12 @@ describe "Places" do
     allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
       [ Place.new( name:"Oljenkorsi", id: 1 ) ]
     )
+    stub_weather
 
     visit places_path
     fill_in('city', with: 'kumpula')
     click_button "Search"
+    save_and_open_page
 
     expect(page).to have_content "Oljenkorsi"
   end
@@ -18,6 +20,7 @@ describe "Places" do
          Place.new( name:"Oljenkorsi2", id: 2 ),
          Place.new( name:"Oljenkorsi3", id: 3 ) ]
       )
+      stub_weather
   
       visit places_path
       fill_in('city', with: 'kumpula')
@@ -29,7 +32,10 @@ describe "Places" do
   end
   it 'if none are returned by the API, it is shown that none was found' do
     allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
-        [ ]
+        []
+      )
+      allow(ApixuApi).to receive(:get_weather_in).with("kumpula").and_return(
+        []
       )
       visit places_path
       fill_in('city', with: 'kumpula')

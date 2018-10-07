@@ -4,6 +4,7 @@ class ApixuApi
         url = "http://api.apixu.com/v1/current.json?key=#{key} &q=#{city}"
     
         response = HTTParty.get "#{url}"
+        return [] if response.nil?
         weather = response.parsed_response["current"]
         weather
       end
