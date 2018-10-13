@@ -13,15 +13,13 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :style_name %>
+    <%= form.text_field :name, id: :style_name, class:"form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :style_description %>
+    <%= form.text_area :description, id: :style_description, class:"form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <button type="submit" class="btn btn-primary">Create Style</button>
 <% end %>

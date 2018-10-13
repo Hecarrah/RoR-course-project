@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Name:</strong>
-  <%= @beer.name %>
+  <%= @beer.name  %>
 </p>
 
 <p>
@@ -30,10 +30,10 @@
   <%= form_for(@rating) do |f| %>
     <%= f.hidden_field :beer_id %>
     score: <%= f.number_field :score %>
-    <%= f.submit %>
+    <%=f.submit class:"btn btn-primary"%>
   <% end %>
 <% end %>
 <p></p>
-<%= link_to 'Edit |', edit_beer_path(@beer) unless current_user.nil?%>
+<%= edit_and_destroy_buttons(@beer) %>
 <%= link_to 'Back', beers_path %> |
-<%= link_to 'list of breweries', breweries_path %>
+<%= link_to 'list of breweries', breweries_path,  class:'btn btn-light' %>

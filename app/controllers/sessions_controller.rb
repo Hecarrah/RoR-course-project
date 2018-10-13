@@ -4,8 +4,11 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by username: params[:username]
-
-    if user&.authenticate(params[:password])
+    if !user
+      redirect_to signin_path, notice: "Wrong username and / or password."
+    elsif user.closed? 
+      redirect_to signin_path, notice: 'Account closed, contact an admin.'
+    elsif user&.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to user_path(user), notice: "Succesfully logged in as: #{user.username}"
     else

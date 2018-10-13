@@ -1,6 +1,16 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+
+  def toggle_closed
+    user = User.find(params[:id])
+    user.update_attribute :closed, (!user.closed) 
+  
+    new_status = user.closed? ? "active" : "closed"
+  
+    redirect_to user, notice: "user status changed to #{new_status}"
+  end
+
   # GET /users
   # GET /users.json
   def index

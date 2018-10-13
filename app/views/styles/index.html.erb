@@ -1,12 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Styles</h1>
 <p> Number of styles: <%= @styles.count %> </p>
-  <ul>
+  <ul class="list-group">
     <% @styles.each do |style| %>
       <tr>
-        <li><%= link_to style.name, style_path(style) %></li>
+        <li class="list-group-item py-1"><%= link_to style.name, style_path(style) %></li>
       </tr>
     <% end %>
   </ul>
-<%= link_to 'New Style', new_style_path %>
+<%= link_to 'New Style', new_style_path, class:'btn btn-light' %>

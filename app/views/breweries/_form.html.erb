@@ -13,15 +13,20 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :brewery_name %>
+    <%= form.text_field :name, id: :brewery_name, class:"form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :year %>
-    <%= form.number_field :year, id: :brewery_year %>
+    <%= form.number_field :year, id: :brewery_year, class:"form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="field">
+    <%= form.check_box :active, class:"" %>
+    <%= form.label :active,class:"" %>
   </div>
+
+  <button type="submit" class="btn btn-primary">Create Brewery</button>
+
+
 <% end %>

@@ -1,10 +1,44 @@
-<h2> Ratings </h2>
-
 <p> Number of ratings: <%= @rating.count %> </p>
-<ul>
- <% @rating.each do |rating| %>
-    <li> <%= rating %> <%= link_to rating.user.username, user_path(rating.user)%> </li>
- <% end %>
+<ul class="list-group-horizontal">
+    <li class="list-group-item">
+        <h4> Top Breweries </h4>
+        <%= render 'list', list: @top_breweries %>
+    </li>
+    <li class="list-group-item">
+        <h4> Top Beers </h4>
+        <%= render 'list', list: @top_beers %>
+    </li> 
+    <li class="list-group-item">
+        <h4> Top Styles </h4>
+        <%= render 'list', list: @top_styles %>
+    </li>
 </ul>
 
-<%= link_to 'New rating', new_rating_path unless current_user.nil? %>
+<h2> Most Active Raters </h2>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th># Ratings</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @top_users.each do |user| %>
+      <tr>
+        <td><%= link_to user.username, user_path(user) %></td>
+        <td><%= user.ratings.count %></td>
+        <td></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<h2> Recent Ratings </h2>
+<ul class="list-group">
+    <% @rating.recent.each do |rating| %>
+        <li class="list-group-item py-1">  <%= rating %> <%= link_to rating.user.username, user_path(rating.user)%> </li>
+    <% end %>
+</ul>
+
+<%= link_to 'New rating', new_rating_path,  class:'btn btn-light' unless current_user.nil? %>

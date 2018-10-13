@@ -13,19 +13,17 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :beer_name %>
+    <%= form.text_field :name, id: :beer_name, class:"form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :style_id %>
-    <%= form.select(:style_id, @styles.map {|p| [p.name, p.id]}) %>
+    <%= form.select(:style_id, @styles.map {|p| [p.name, p.id]},{}, {class:"form-control"}) %>
   </div>
 
   <div class="field">
     <%= form.label :brewery_id %>
-    <%= form.select(:brewery_id, Brewery.all.map {|p| [p.name, p.id]}) %>
+    <%= form.select(:brewery_id, Brewery.all.map {|p| [p.name, p.id]},{}, {class:"form-control"}) %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <button type="submit" class="btn btn-primary">Create Beer</button>
 <% end %>

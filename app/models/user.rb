@@ -42,4 +42,9 @@ class User < ApplicationRecord
     end
     Brewery.find(sums.key(sums.values.max)).name
   end
+
+  def self.top(n)
+    sorted_by_rating_in_desc_order = User.all.sort_by{ |b| -b.ratings.count || 0 }
+    sorted_by_rating_in_desc_order[0..n-1]
+  end
 end

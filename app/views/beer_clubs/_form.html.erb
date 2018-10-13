@@ -11,22 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :beer_club_name %>
+  <div class="form-group">
+    <label for="beer_club[name]">Name</label>
+    <input type="text" class="form-control" id="beer_club_name" name="beer_club[name]" placeholder="Beer Club Name">
   </div>
 
-  <div class="field">
-    <%= form.label :founded %>
-    <%= form.text_field :founded, id: :beer_club_founded %>
+  <div class="form-group">
+    <label for="beer_club[founded]">Founding year</label>
+    <input type="number" class="form-control" id="beer_club_founded" name="beer_club[founded]" placeholder="Beer Club founding year">
   </div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city, id: :beer_club_city %>
+   <div class="form-group">
+    <label for="beer_club[city]">City</label>
+    <input type="text" class="form-control" id="beer_club_city" name="beer_club[city]" placeholder="Beer Club City">
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <button type="submit" class="btn btn-primary">Create Beer Club</button>
 <% end %>
