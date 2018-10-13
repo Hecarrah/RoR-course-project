@@ -8,7 +8,7 @@ class Brewery < ApplicationRecord
   validates :year, numericality: { greater_than_or_equal_to: 1040, less_than_or_equal_to: lambda { |l| Time.now.year if l.year }, only_integer: true }
 
   scope :active, -> { where active: true }
-  scope :retired, -> { where active: [nil,false] }
+  scope :retired, -> { where active: [nil, false] }
 
   def print_report
     puts name
@@ -25,8 +25,8 @@ class Brewery < ApplicationRecord
     name.to_s
   end
 
-  def self.top(n)
+  def self.top(amount)
     sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -(b.average_rating || 0) }
-    sorted_by_rating_in_desc_order[0..n-1]
+    sorted_by_rating_in_desc_order[0..(amount - 1)]
   end
 end

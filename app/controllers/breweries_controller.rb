@@ -3,13 +3,12 @@ class BreweriesController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :ensure_admin, only: [:destroy]
 
-
   def toggle_activity
     brewery = Brewery.find(params[:id])
-    brewery.update_attribute :active, (!brewery.active)
-  
+    brewery.update_attribute :active, !brewery.active
+
     new_status = brewery.active? ? "active" : "inactive"
-  
+
     redirect_to brewery, notice: "brewery activity status changed to #{new_status}"
   end
 
