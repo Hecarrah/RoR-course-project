@@ -1,39 +1,32 @@
 
 
+<dl class="dl-horizontal">
+  <dt>Name: <%= @beer.name %></dt>
+  <dt>Style: <%=link_to @beer.style_name, style_path(@beer.style_id) %> </dt>
+  <dt>Brewery: <%=link_to Brewery.find(@beer.brewery_id).name, brewery_path(@beer.brewery_id) %></dt>
+  <br>
+  <dt>
+    <% if @beer.ratings.empty? %>
+    beer has not yet been rated!
+    <% else %>
+    <%= pluralize(@beer.ratings.count, 'rating')%>, with the average being <%= @beer.average_rating%>
+    <% end %> 
+</dt>
+</dl>
 <p>
-  <strong>Name:</strong>
-  <%= @beer.name  %>
-</p>
-
-<p>
-  <strong>Style:</strong>
-  <%=link_to @beer.style_name, style_path(@beer.style_id) %>
-</p>
-
-<p>
-  <strong>Brewery:</strong>
-  <%=link_to Brewery.find(@beer.brewery_id).name, brewery_path(@beer.brewery_id) %>
-</p>
-
-<p>
-<strong>Ratings: </strong>
-<% if @beer.ratings.empty? %>
- beer has not yet been rated!
-<% else %>
-<%= pluralize(@beer.ratings.count, 'rating')%>, with the average being <%= @beer.average_rating%>
-<% end %>
-</p>
 
 <% if current_user %>
-  <h4>give a rating:</h4>
+  <h4>Rate this beer:</h4>
 
   <%= form_for(@rating) do |f| %>
     <%= f.hidden_field :beer_id %>
-    score: <%= f.number_field :score %>
+      <%= f.number_field :score %>
+      <br><br>
     <%=f.submit class:"btn btn-primary"%>
   <% end %>
 <% end %>
 <p></p>
 <%= edit_and_destroy_buttons(@beer) %>
-<%= link_to 'Back', beers_path %> |
+<br>
+<%= link_to 'Back', beers_path, class:'btn btn-light' %>
 <%= link_to 'list of breweries', breweries_path,  class:'btn btn-light' %>

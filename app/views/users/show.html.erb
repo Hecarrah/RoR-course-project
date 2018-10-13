@@ -1,45 +1,43 @@
-<h2>
-  <strong>Username:</strong>
-  <%= @user.username %>
-  <%if current_user and current_user.admin %>
-  <% if not @user.closed  %>
-    <span class="badge badge-info">Active</span>
-  <% else %>
-    <span class="badge badge-info">Closed</span>
-  <% end %>
-</h2>
-<%= link_to "Toggle Status", toggle_closed_user_path(@user.id), method: :post, class: "btn btn-danger" %>
-<%end%>
-
-<p>
-  has <%= @user.ratings.count %> ratings, averaging at <%= round(@user.average_rating) %>
-</p>
-
-<h3>Ratings </h3>
-<ul class="list-group">
- <% @user.ratings.each do |rating| %>
-    <% if @user == current_user %>
-    <li class="list-group-item py-1"> <%= rating %> <%= link_to 'delete', rating_path(rating.id), method: :delete,data: { confirm: 'Are you sure?' }%> </li>
+<dl class="dl-horizontal">
+    <dt>username:
+    <%= @user.username %>
+    <%if current_user and current_user.admin %>
+    <% if not @user.closed  %>
+      <span class="badge badge-info">Active</span>
+    <% else %>
+      <span class="badge badge-info">Closed</span>
     <% end %>
- <% end %>
-</ul>
+  </h2>
+  <%= link_to "Toggle Status", toggle_closed_user_path(@user.id), method: :post, class: "btn btn-danger" %>
+  <%end%>
+  </dt>
+  <dt>has <%= @user.ratings.count %> ratings, averaging at <%= round(@user.average_rating) %></dt>
+  <dt>Favorite Style: <%= @user.favorite_style %></dt>
+  <dt>Favorite Brewery: <%= @user.favorite_brewery %></dt>
+</dl>
 
-<h4><strong>Favorite Style:</strong>
-  <%= @user.favorite_style %>
-</h4>
-
-<h4><strong>Favorite Brewery:</strong>
-  <%= @user.favorite_brewery %>
-</h4>
-
-<h3>Beer Clubs:</h3>
-<p>
-<ul class="list-group">
-  <% @user.beer_clubs.each do |m| %>
-    <li class="list-group-item py-1><%= link_to m.name, beer_club_path(m) %></li>
+<div class="row">
+  <div class="col-sd-3">
+    <h3>Ratings </h3>
+    <ul class="list-group">
+    <% @user.ratings.each do |rating| %>
+      <% if @user == current_user %>
+        <li class="list-group-item py-1"> <%= rating %> <%= link_to 'delete', rating_path(rating.id), method: :delete,data: { confirm: 'Are you sure?' }%> </li>
+      <% end %>
     <% end %>
-</ul>
-</p>
+    </ul>
+  </div>
+
+  <div class="col-sd-7">
+    <h3>Beer Clubs:</h3>
+    <ul class="list-group">
+      <% @user.beer_clubs.each do |m| %>
+        <li class="list-group-item py-1"><%= link_to m.name, beer_club_path(m) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
 <% if @user == current_user %>
 <%= edit_and_destroy_buttons(@user) %>
 <% end %>
