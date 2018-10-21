@@ -1,5 +1,6 @@
 class Beer < ApplicationRecord
   include RatingAverage
+  extend TopHelper
 
   belongs_to :brewery, touch: true
   belongs_to :style
@@ -15,10 +16,5 @@ class Beer < ApplicationRecord
 
   def style_name
     Style.find(style_id).to_s
-  end
-
-  def self.top(amount)
-    sorted_by_rating_in_desc_order = Beer.all.sort_by{ |b| -(b.average_rating || 0) }
-    sorted_by_rating_in_desc_order[0..(amount - 1)]
   end
 end

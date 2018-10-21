@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by username: params[:username]
-    if !user || user.GitHub.nil? || user.GitHub
+    if !user || user.GitHub
       redirect_to signin_path, notice: "Wrong username and / or password."
     elsif user.closed?
       redirect_to signin_path, notice: 'Account closed, contact an admin.'
