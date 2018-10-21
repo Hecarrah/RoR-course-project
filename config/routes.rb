@@ -13,6 +13,13 @@ Rails.application.routes.draw do
   resources :users do
     post 'toggle_closed', on: :member
   end
+  resources :memberships do
+    post 'confirm', on: :member
+  end
+
+  get 'beerlist', to:'beers#list'
+  get 'brewerylist', to:'breweries#list'
+
 
   root 'breweries#index'
   get 'kaikki_bisset', to: 'beers#index'
@@ -25,6 +32,8 @@ Rails.application.routes.draw do
 
   get 'places', to: 'places#index'
   post 'places', to:'places#search'
+
+  get 'auth/github/callback', to: 'sessions#create_oauth'
 
   #get 'ratings', to: 'ratings#index'
   #get 'ratings/new', to:'ratings#new'

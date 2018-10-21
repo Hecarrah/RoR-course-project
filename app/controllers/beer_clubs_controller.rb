@@ -7,12 +7,21 @@ class BeerClubsController < ApplicationController
   # GET /beer_clubs.json
   def index
     @beer_clubs = BeerClub.all
+
+    order = params[:order] || 'name'
+
+    @beer_clubs = case order
+                  when 'name' then @beer_clubs.sort_by{ |b| b.name.downcase }
+                  when 'founded' then @beer_clubs.sort_by(&:founded)
+                  when 'city' then @beer_clubs.sort_by{ |b| b.city.downcase }
+                  end
   end
 
   # GET /beer_clubs/1
   # GET /beer_clubs/1.json
   def show
     @membership = Membership.new
+    @pending = Membership.where("Confirmed = false")
     @membership.beer_club = @beer_club
     @beer_clubs = current_user.beer_clubs
   end
@@ -33,6 +42,11 @@ class BeerClubsController < ApplicationController
 
     respond_to do |format|
       if @beer_club.save
+        @membership = Membership.new
+        @membership.beer_club_id = @beer_club.id
+        @membership.user_id = current_user.id
+        @membership.confirmed = true
+        @membership.save
         format.html { redirect_to @beer_club, notice: 'Beer club was successfully created.' }
         format.json { render :show, status: :created, location: @beer_club }
       else

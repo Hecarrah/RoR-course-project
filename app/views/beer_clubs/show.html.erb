@@ -15,16 +15,35 @@
 <%else%>
 <%= form_for(@membership) do |f| %>
  <%= f.hidden_field :beer_club_id %>
- <%=f.submit value:"join the club",class:"btn btn-primary" %>
+ <%=f.submit value:"Apply to the the club",class:"btn btn-primary" %>
  <% end%>
 <% end %>
 <% end %>
 
 <h4>Members:</h4>
 <ul class="list-group">
-  <% @beer_club.members.each do |m| %>
-    <li class="list-item"><%= link_to m.username, user_path(m) %></li>
-    <% end %>
+  <% @beer_club.memberships.each do |m| %>
+  <% if m.confirmed%>
+    <li class="list-item"><%= link_to User.find(m.user_id).username, user_path(m.user_id) %>
+    </li>
+  <% end %>
+<% end %>
+</ul>
+
+<br>
+
+<h4>Pending applications:</h4>
+<ul class="list-group">
+  <% @beer_club.memberships.each do |m| %>
+  <% if !m.confirmed%>
+    <li class="list-item"><%= link_to User.find(m.user_id).username, user_path(m.user_id) %>
+      <% if current_user.memberships.find_by(beer_club_id: m.beer_club_id).confirmed %>
+        <%= link_to "confirm",  confirm_membership_path(m.id), method: :post, class: "btn btn-primary" %>
+      <%end%>
+    </li>
+  <% end %>
+<% end %>
+
 </ul>
 <br><br>
 

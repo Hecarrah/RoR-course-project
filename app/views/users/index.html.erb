@@ -2,15 +2,29 @@
 
 <h1>Users</h1>
 
-<ul class="list-group">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th> rated beers </th>
+      <th> total ratings </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
     <% @users.each do |user| %>
-        <% if user.closed? and current_user.admin?  %>
-            <li class="list-group-item py-1"><%= link_to user.username, user %>  <span class="badge badge-info">Closed</span></li>
-        <%else%>
-            <li class="list-group-item py-1"><%= link_to user.username, user %></li>
-        <% end %>
+      <tr>
+        <td><%= link_to user.username, user %></td>
+        <td><%= user.beers.size %></td>
+        <td><%= user.ratings.size %></td>
+        <td>
+          <% if current_user.admin? and user.closed? %>
+            <span class="label label-info">account closed</span>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-</ul>
-<br>
+  </tbody>
+</table>
 
 <%= link_to 'New User', new_user_path %>

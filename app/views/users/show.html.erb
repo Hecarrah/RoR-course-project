@@ -29,10 +29,20 @@
   </div>
 
   <div class="col-sd-7">
-    <h3>Beer Clubs:</h3>
+    <h3>Member of Beer Clubs:</h3>
     <ul class="list-group">
       <% @user.beer_clubs.each do |m| %>
+      <%if Membership.find_by(beer_club_id: m.id).confirmed%>
         <li class="list-group-item py-1"><%= link_to m.name, beer_club_path(m) %></li>
+      <% end %>
+      <% end %>
+    </ul>
+    <h3>Pending Application to:</h3>
+    <ul class="list-group">
+      <% @user.beer_clubs.each do |m| %>
+      <%if !Membership.find_by(beer_club_id: m.id).confirmed%>
+        <li class="list-group-item py-1"><%= link_to m.name, beer_club_path(m) %></li>
+      <% end %>
       <% end %>
     </ul>
   </div>

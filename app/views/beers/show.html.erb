@@ -1,5 +1,5 @@
 
-
+<% cache @beer do %> 
 <dl class="dl-horizontal">
   <dt>Name: <%= @beer.name %></dt>
   <dt>Style: <%=link_to @beer.style_name, style_path(@beer.style_id) %> </dt>
@@ -13,6 +13,7 @@
     <% end %> 
 </dt>
 </dl>
+<%end%>
 <p>
 
 <% if current_user %>

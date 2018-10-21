@@ -4,6 +4,13 @@ class MembershipsController < ApplicationController
     @beer_clubs = BeerClub.all
   end
 
+  def confirm
+    membership = Membership.find(params[:id])
+    membership.update_attribute :confirmed, true
+
+    redirect_to membership.beer_club, notice: "User confirmed"
+  end
+
   def new
     @membership = Membership.new
     @memberships = Membership.all
@@ -16,7 +23,7 @@ class MembershipsController < ApplicationController
     @beer_clubs = BeerClub.all
     @membership.user = current_user
     if @membership.save
-      redirect_to beer_club_path(@membership.beer_club), notice: "Welcome to the club, #{current_user.username}"
+      redirect_to beer_club_path(@membership.beer_club), notice: "Applied to the club, #{current_user.username}"
     else
       @memberships = Membership.all
       render :new

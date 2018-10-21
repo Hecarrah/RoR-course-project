@@ -1,5 +1,5 @@
 
-
+<% cache @brewery do %> 
 <dl class="dl-horizontal">
  <dt>Name: <%= @brewery.name %>
   <% if not @brewery.active  %>
@@ -10,13 +10,15 @@
   <%= link_to "change activity", toggle_activity_brewery_path(@brewery.id), method: :post, class: "btn btn-primary" %>
   </dt>
   <dt>Enstablished in <%=@brewery.year %> </dt>
-  <dt>Beer Count: <%=@brewery.beers.count %> </dt>
+  <dt>Beer Count: <%=@brewery.beers.count %> </dt> 
   <dt>
     <% if @brewery.ratings.empty? %>
     <% else %>
     Has <%= pluralize(@brewery.ratings.count, 'rating')%>, with the average being <%= round(@brewery.average_rating)%>
     <% end %>
 </dt>
+<% end %>
+
 <br>
 <dt>Beers:</dt>
 </dl>
@@ -28,6 +30,8 @@
     </li>
     <% end %>
 </ul>
+
+<%end%>
 <br>
 
 <%= edit_and_destroy_buttons(@brewery) %> <br> <br>
