@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get 'places', to: 'places#index'
   post 'places', to:'places#search'
 
-  get 'auth/github/callback', to: 'sessions#create_oauth'
+  get 'auth/:provider/callback', to: 'sessions#create_oauth'
 
   #get 'ratings', to: 'ratings#index'
   #get 'ratings/new', to:'ratings#new'

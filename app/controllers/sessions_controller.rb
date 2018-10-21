@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by username: params[:username]
-    if !user || user.GitHub
+    if !user || user.GitHub.nil? || user.GitHub
       redirect_to signin_path, notice: "Wrong username and / or password."
     elsif user.closed?
       redirect_to signin_path, notice: 'Account closed, contact an admin.'
@@ -21,11 +21,11 @@ class SessionsController < ApplicationController
     if !user
       user = User.new
       user.username = request.env['omniauth.auth'].info.nickname
-      user.GitHub = true
       pass = [*'a'..'z', *'A'..'Z', *1..9].to_a.sample(16).join
       user.password = pass
       user.password_confirmation = pass
       user.save
+      user.update_attribute(:GitHub, true)
     end
     if user
       session[:user_id] = user.id
